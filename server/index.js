@@ -8,8 +8,15 @@ const app = express();
 app.use(cors());
 const server = http.createServer(app);
 
+// server/index.js içindeki io tanımı (ESKİSİNİ SİL BUNU YAPIŞTIR)
+
 const io = new Server(server, {
-    cors: { origin: "http://localhost:5173", methods: ["GET", "POST"] }
+    cors: {
+        origin: "*",            // Herkese izin ver (Vercel, localhost vs.)
+        methods: ["GET", "POST"] 
+        // DİKKAT: 'credentials: true' satırını bilerek SİLDİK.
+        // Yıldız (*) ile credentials yan yana gelince hata verir.
+    }
 });
 
 let rooms = {}; 
