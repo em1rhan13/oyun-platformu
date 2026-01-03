@@ -278,4 +278,11 @@ io.on('connection', (socket) => {
     socket.on("send_message", (data) => socket.to(data.room).emit("receive_message", data));
 });
 
-server.listen(3001, () => console.log("🚀 Sunucu v2.1 Hazır!"));
+// server/index.js EN ALT SATIR
+
+// Render bize bir PORT verirse onu kullan, vermezse (yereldeysek) 3001 kullan.
+const PORT = process.env.PORT || 3001;
+
+server.listen(PORT, () => {
+    console.log(`🚀 Sunucu ${PORT} portunda çalışıyor!`);
+});
